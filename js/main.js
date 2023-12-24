@@ -7,6 +7,8 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/l
 
 //Create a Three.JS Scene
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x202021);
+
 //create a new camera with positions and angles
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
@@ -58,13 +60,23 @@ document.getElementById("container3D").appendChild(renderer.domElement);
 camera.position.set(-10, 15, 10);
 
 //Add lights to the scene, so we can actually see the 3D model
-const topLight = new THREE.DirectionalLight(0xffffff, 4.5); // (color, intensity)
-topLight.position.set(5, 5, 10) //top-left-ish
+const topLight = new THREE.DirectionalLight(0xffffff, 3); // (color, intensity)
+topLight.position.set(-5, 8, 5) //top-left-ish
 topLight.castShadow = true;
 scene.add(topLight);
 
-const ambientLight = new THREE.AmbientLight(0x333333, 2);
-scene.add(ambientLight);
+
+const topLight1 = new THREE.DirectionalLight(0xffffff, 3); // (color, intensity)
+topLight1.position.set(5, 8, -5) //top-left-ish
+topLight1.castShadow = true;
+scene.add(topLight1);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+//scene.add(ambientLight);
+
+const PointLight = new THREE.PointLight(0xffffff, 1);
+PointLight.position.y = 2
+//scene.add(PointLight);
 
 
 //This adds controls to the camera, so we can rotate / zoom it with the mouse
